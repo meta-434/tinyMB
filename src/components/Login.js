@@ -1,48 +1,54 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
+// material-ui
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+// routing
+import { BrowserRouter as Link } from "react-router-dom";
 
 class Login extends Component {
-  handleSubmit() {
-    console.log("submit handler works");
-    return <Alert variant={"primary"}>Submit Button Works!!</Alert>;
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: null
+    };
   }
+
+  handleDoesHaveAccount = event => {
+    event.persist();
+    console.log(event.target.textContent);
+  };
+
+  handleDoesNotHaveAccount = event => {
+    event.persist();
+    console.log(event.target.textContent);
+  };
+
   render() {
     return (
-      <Container>
-        <Form>
-          <Row>
-            <Col md={{ span: 6, offset: 3 }}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={{ span: 6, offset: 6 }}>
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={() => this.handleSubmit()}
-              >
-                Submit
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Container>
+      <div>
+        <Paper>
+          <h3>Hi. Why don't you log in?</h3>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="email"
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            required
+            id="outlined-required"
+            label="password"
+            margin="normal"
+            variant="outlined"
+          />
+          <Button id="go" onClick={e => this.handleLogin(e)} />
+          <p>Don't have an account? {}</p>
+          <Link to="/signup">sign up!</Link>
+        </Paper>
+      </div>
     );
   }
 }
