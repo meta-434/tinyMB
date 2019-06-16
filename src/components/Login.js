@@ -32,6 +32,7 @@ class Login extends Component {
           justify="center"
           style={{ minHeight: "10vh" }}
         >
+          {/*100vh will be full height... */}
           <Grid item xs={3}>
             <LoginForm />
           </Grid>
